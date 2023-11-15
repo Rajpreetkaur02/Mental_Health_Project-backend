@@ -1,5 +1,6 @@
 package com.MentalHealthProject.mentalHealth.services;
 
+import com.MentalHealthProject.mentalHealth.entities.EmergencyContact;
 import com.MentalHealthProject.mentalHealth.entities.User;
 
 import java.util.List;

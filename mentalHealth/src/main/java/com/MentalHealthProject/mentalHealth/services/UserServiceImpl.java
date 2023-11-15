@@ -1,7 +1,9 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.UserDao;
+import com.MentalHealthProject.mentalHealth.entities.EmergencyContact;
 import com.MentalHealthProject.mentalHealth.entities.User;
+import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,9 +25,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        userDao.save(user);
-        return user;
+        try {
+            user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+            userDao.save(user);
+            return user;
+        } catch (DuplicateKeyException e) {
+            throw new RuntimeException("Email already exists!");
+        }
     }
 
     @Override

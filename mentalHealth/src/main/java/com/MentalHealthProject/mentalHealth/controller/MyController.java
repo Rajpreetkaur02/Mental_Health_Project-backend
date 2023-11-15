@@ -1,5 +1,6 @@
 package com.MentalHealthProject.mentalHealth.controller;
 
+import com.MentalHealthProject.mentalHealth.entities.EmergencyContact;
 import com.MentalHealthProject.mentalHealth.entities.User;
 import com.MentalHealthProject.mentalHealth.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
