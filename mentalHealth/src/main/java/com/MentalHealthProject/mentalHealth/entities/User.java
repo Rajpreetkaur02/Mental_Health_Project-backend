@@ -10,12 +10,15 @@ import java.util.Collection;
 
 @Document("users")
 public class User implements UserDetails {
-    private ObjectId _id;
+    private String _id;
     private String name;
     private Long number;
     @Indexed(unique = true)
     private String email;
     private String password;
+    private String gender;
+    private String income;
+    private String age;
     private EmergencyContact emergencyContact;
     private boolean enabled = true;
 
@@ -23,12 +26,15 @@ public class User implements UserDetails {
 
     }
 
-    public User(ObjectId _id, String name, String email, Long number, String password, EmergencyContact emergencyContact, boolean enabled) {
+    public User(String _id, String name, Long number, String email, String password, String gender, String income, String age, EmergencyContact emergencyContact, boolean enabled) {
         this._id = _id;
         this.name = name;
         this.number = number;
         this.email = email;
         this.password = password;
+        this.gender = gender;
+        this.income = income;
+        this.age = age;
         this.emergencyContact = emergencyContact;
         this.enabled = enabled;
     }
@@ -53,11 +59,9 @@ public class User implements UserDetails {
         return email;
     }
 
-    public ObjectId get_id() {
-        return _id;
-    }
+    public String get_id() { return _id; }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -95,6 +99,30 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getIncome() {
+        return income;
+    }
+
+    public void setIncome(String income) {
+        this.income = income;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public boolean isEnabled() {

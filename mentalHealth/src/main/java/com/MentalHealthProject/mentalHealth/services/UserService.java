@@ -11,4 +11,6 @@ public interface UserService {
     public User addUser(User user);
 
     public User getSpecificUser(String email);
+
+    public User updateUser(String email, User user);
 }

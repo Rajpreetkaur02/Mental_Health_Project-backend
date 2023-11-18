@@ -38,4 +38,14 @@ public class UserServiceImpl implements UserService {
     public User getSpecificUser(String email) {
         return this.userDao.findByEmail(email);
     }
+
+    @Override
+    public User updateUser(String email, User user) {
+        User newUser = getSpecificUser(email);
+        newUser.setAge(user.getAge());
+        newUser.setGender(user.getGender());
+        newUser.setIncome(user.getIncome());
+        userDao.save(newUser);
+        return newUser;
+    }
 }

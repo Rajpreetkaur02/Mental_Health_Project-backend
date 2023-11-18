@@ -35,4 +35,9 @@ public class MyController {
     public User getSpecificUser(@PathVariable String email) {
         return this.userService.getSpecificUser(email);
     }
+
+    @PutMapping(value = "/updateUser/{email}")
+    public User updateUser(@PathVariable String email, @RequestBody User user) {
+        return this.userService.updateUser(email, user);
+    }
 }
