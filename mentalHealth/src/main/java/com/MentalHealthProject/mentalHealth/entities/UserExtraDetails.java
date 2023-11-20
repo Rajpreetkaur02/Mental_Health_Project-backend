@@ -3,12 +3,14 @@ package com.MentalHealthProject.mentalHealth.entities;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document("extraDetails")
 public class UserExtraDetails {
     private String _id;
     @Indexed(unique = true)
     private String userId;
-    private Object mood;
+    private List<Mood> mood;
     private Integer sleep;
     private String type;
     private String groupId;
@@ -16,7 +18,7 @@ public class UserExtraDetails {
     public UserExtraDetails() {
     }
 
-    public UserExtraDetails(String _id, String userId, Object mood, Integer sleep, String type, String groupId) {
+    public UserExtraDetails(String _id, String userId, List<Mood> mood, Integer sleep, String type, String groupId) {
         this._id = _id;
         this.userId = userId;
         this.mood = mood;
@@ -41,11 +43,11 @@ public class UserExtraDetails {
         this.userId = userId;
     }
 
-    public Object getMood() {
+    public List<Mood> getMood() {
         return mood;
     }
 
-    public void setMood(Object mood) {
+    public void setMood(List<Mood> mood) {
         this.mood = mood;
     }
 
