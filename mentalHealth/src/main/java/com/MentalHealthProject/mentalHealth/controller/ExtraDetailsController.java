@@ -17,6 +17,11 @@ public class ExtraDetailsController {
     @Autowired
     private UserExtraDetailsService userExtraDetailsService;
 
+    @GetMapping("/detail/{userId}")
+    public UserExtraDetails getSpecificDetail(@PathVariable String userId) {
+        return this.userExtraDetailsService.getSpecificDetail(userId);
+    }
+
     @PostMapping("/addDetails")
     public UserExtraDetails addDetails(@RequestBody UserExtraDetails userExtraDetails) {
         return this.userExtraDetailsService.addDetails(userExtraDetails);

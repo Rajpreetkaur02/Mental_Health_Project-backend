@@ -20,6 +20,11 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     private UserExtraDetailsDao userExtraDetailsDao;
 
     @Override
+    public UserExtraDetails getSpecificDetail(String userId) {
+        return userExtraDetailsDao.findByUserId(userId);
+    }
+
+    @Override
     public UserExtraDetails addDetails(UserExtraDetails userExtraDetails) {
         return userExtraDetailsDao.save(userExtraDetails);
     }

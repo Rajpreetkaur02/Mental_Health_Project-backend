@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface UserExtraDetailsService {
+    public UserExtraDetails getSpecificDetail(String userId);
     public UserExtraDetails addDetails(UserExtraDetails userExtraDetails);
 
     public UserExtraDetails addMood(String userId, Mood mood);
