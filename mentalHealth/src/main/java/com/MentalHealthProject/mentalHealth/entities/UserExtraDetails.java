@@ -8,23 +8,24 @@ import java.util.List;
 @Document("extraDetails")
 public class UserExtraDetails {
     private String _id;
-    @Indexed(unique = true)
     private String userId;
+    private String result;
     private List<Mood> mood;
     private Integer sleep;
     private String type;
-    private String groupId;
+    private List<String> groupsJoined;
 
     public UserExtraDetails() {
     }
 
-    public UserExtraDetails(String _id, String userId, List<Mood> mood, Integer sleep, String type, String groupId) {
+    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, Integer sleep, String type, List<String> groupsJoined) {
         this._id = _id;
         this.userId = userId;
+        this.result = result;
         this.mood = mood;
         this.sleep = sleep;
         this.type = type;
-        this.groupId = groupId;
+        this.groupsJoined = groupsJoined;
     }
 
     public String get_id() {
@@ -59,19 +60,27 @@ public class UserExtraDetails {
         this.sleep = sleep;
     }
 
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public List<String> getGroupsJoined() {
+        return groupsJoined;
+    }
+
+    public void setGroupsJoined(List<String> groupsJoined) {
+        this.groupsJoined = groupsJoined;
     }
 }
