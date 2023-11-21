@@ -15,4 +15,6 @@ public interface UserExtraDetailsService {
     public List<Mood> getMood(String userId);
 
     public void addGroups(String userId, String groupId) throws Exception;
+
+    public List<String> getGroupsJoined(String userId);
 }

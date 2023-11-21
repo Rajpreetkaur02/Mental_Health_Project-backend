@@ -32,6 +32,11 @@ public class ExtraDetailsController {
         return this.userExtraDetailsService.getMood(userId);
     }
 
+    @GetMapping("/getJoinedGroups/{userId}")
+    public List<String> getGroupsJoined(@PathVariable String userId) {
+        return this.userExtraDetailsService.getGroupsJoined(userId);
+    }
+
     @PutMapping(value = "/addMood/{userId}")
     public UserExtraDetails addMood(@PathVariable String userId, @RequestBody Mood userMood) {
         return this.userExtraDetailsService.addMood(userId, userMood);
