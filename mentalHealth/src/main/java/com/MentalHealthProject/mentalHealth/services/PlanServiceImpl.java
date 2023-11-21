@@ -20,7 +20,7 @@ public class PlanServiceImpl implements PlanService {
         return planDao.findAll();
     }
     @Override
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(cron = "0 0 0 * * MON")
     public void incrementWeek() {
         if (week < 3) {
             week = week + 1;
