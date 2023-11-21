@@ -12,7 +12,7 @@ public interface SupportGroupsService {
 
     public SupportGroups addSupportGroups(SupportGroups supportGroups);
 
-    public Optional<SupportGroups> getSpecificGroup(String id);
+    public SupportGroups getSpecificGroup(String id);
 
     public SupportGroups updateGroup(String id);
 }

@@ -28,7 +28,7 @@ public class SupportGroupsController {
     }
 
     @GetMapping("/{id}")
-    public Optional<SupportGroups> getSpecificGroup(@PathVariable String id) {
+    public SupportGroups getSpecificGroup(@PathVariable String id) {
         return this.supportGroupsService.getSpecificGroup(id);
     }
 

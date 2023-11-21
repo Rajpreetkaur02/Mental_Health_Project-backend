@@ -27,9 +27,9 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
     }
 
     @Override
-    public Optional<SupportGroups> getSpecificGroup(String id) {
+    public SupportGroups getSpecificGroup(String id) {
         Optional<SupportGroups> supportGroup = supportGroupsDao.findById(id);
-        return supportGroup;
+        return supportGroup.get();
     }
 
     @Override
