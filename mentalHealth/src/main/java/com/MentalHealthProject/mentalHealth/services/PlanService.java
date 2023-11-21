@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface PlanService {
     public List<Plan> getPlans();
+
+    public List<String> getSpecificPlan(String age);
+
+    public void incrementWeek();
 }
