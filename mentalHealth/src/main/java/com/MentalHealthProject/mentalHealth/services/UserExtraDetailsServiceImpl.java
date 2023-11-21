@@ -36,6 +36,12 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     }
 
     @Override
+    public List<String> getGroupsJoined(String userId) {
+        UserExtraDetails user = userExtraDetailsDao.findByUserId(userId);
+        return user.getGroupsJoined();
+    }
+
+    @Override
     public void addGroups(String userId, String groupId) throws Exception {
         UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
         List<String> groups;
