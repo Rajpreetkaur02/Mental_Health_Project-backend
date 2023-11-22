@@ -30,4 +30,6 @@ public class Mood {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String getOnlyDate() {return timestamp.substring(0, 10);}
 }

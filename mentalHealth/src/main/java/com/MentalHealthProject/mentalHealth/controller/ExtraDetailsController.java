@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/extra")
@@ -28,8 +29,8 @@ public class ExtraDetailsController {
     }
 
     @GetMapping("/getMood/{userId}")
-    public List<Mood> getMood(@PathVariable String userId) {
-        return this.userExtraDetailsService.getMood(userId);
+    public List<Mood> getMood(@PathVariable String userId, @RequestHeader(name="MyDate") String date) {
+        return this.userExtraDetailsService.getMood(userId, date);
     }
 
     @GetMapping("/getJoinedGroups/{userId}")
@@ -50,5 +51,10 @@ public class ExtraDetailsController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/moodsAvg/{userId}")
+    public Map<String, Integer> moodsAvg(@PathVariable String userId) {
+        return this.userExtraDetailsService.returnAvg(userId);
     }
 }
