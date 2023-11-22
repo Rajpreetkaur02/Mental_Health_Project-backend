@@ -47,6 +47,15 @@
 			<scope>test</scope>
 		</dependency>
 
+<!--	WEB SOCKET DEPENDENCIES START-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
+<!--		WEB SOCKET DEPENDENCIES END-->
+
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
@@ -76,7 +85,12 @@
 			<version>4.2.0</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.0.13</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
