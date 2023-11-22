@@ -30,7 +30,6 @@ public class ExtraDetailsController {
 
     @GetMapping("/getMood/{userId}")
     public List<Mood> getMood(@PathVariable String userId, @RequestHeader(name="MyDate") String date) {
-
         return this.userExtraDetailsService.getMood(userId, date);
     }
 

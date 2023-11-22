@@ -42,7 +42,7 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         UserExtraDetails user = userExtraDetailsDao.findByUserId(userId);
         List<Mood> moods = new ArrayList<>();
         for (int i = 0; i < user.getMood().size(); i++) {
-            if (Objects.equals(user.getMood().get(i).getTimestamp(), date)) {
+            if (Objects.equals(user.getMood().get(i).getOnlyDate(), date)) {
                 moods.add(user.getMood().get(i));
             }
         }
@@ -118,7 +118,7 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     public Map<String, List<Mood>> sortedMoods(List<Mood> moods) {
         List<Mood> sameMoods = new ArrayList<>();
         Map<String, List<Mood>> groupedMap = moods.stream()
-                .collect(Collectors.groupingBy(Mood::getTimestamp));
+                .collect(Collectors.groupingBy(Mood::getOnlyDate));
         return groupedMap;
     }
 
