@@ -2,6 +2,7 @@ package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.PlanDao;
 import com.MentalHealthProject.mentalHealth.entities.Plan;
+import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,9 @@ public class PlanServiceImpl implements PlanService {
     public List<Plan> getPlans() {
         return planDao.findAll();
     }
+
     @Override
-    @Scheduled(cron = "0 0 0 * * WED")
+    @Scheduled(cron = "0 0 0 * * MON")
     public void incrementWeek() {
         if (week < 3) {
             week = week + 1;
@@ -40,7 +42,5 @@ public class PlanServiceImpl implements PlanService {
         }
         return null;
     }
-
-
 
 }

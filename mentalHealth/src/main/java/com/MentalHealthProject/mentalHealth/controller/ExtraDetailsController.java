@@ -57,4 +57,14 @@ public class ExtraDetailsController {
     public Map<String, Integer> moodsAvg(@PathVariable String userId) {
         return this.userExtraDetailsService.returnAvg(userId);
     }
+
+    @PutMapping(value = "/task/{userId}")
+    public void addTasks(@PathVariable String userId, @RequestBody List<Boolean> completed) {
+        this.userExtraDetailsService.addTasks(userId, completed);
+    }
+
+    @GetMapping("/tasksCompleted/{userId}")
+    public List<Boolean> tasksCompleted(@PathVariable String userId) {
+        return this.userExtraDetailsService.tasksCompleted(userId);
+    }
 }

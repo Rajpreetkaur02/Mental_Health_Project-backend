@@ -13,18 +13,20 @@ public class UserExtraDetails {
     private List<Mood> mood;
     private Integer sleep;
     private String type;
+    private List<Boolean> tasksCompleted;
     private List<String> groupsJoined;
 
     public UserExtraDetails() {
     }
 
-    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, Integer sleep, String type, List<String> groupsJoined) {
+    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, Integer sleep, String type, List<Boolean> tasksCompleted, List<String> groupsJoined) {
         this._id = _id;
         this.userId = userId;
         this.result = result;
         this.mood = mood;
         this.sleep = sleep;
         this.type = type;
+        this.tasksCompleted = tasksCompleted;
         this.groupsJoined = groupsJoined;
     }
 
@@ -82,5 +84,13 @@ public class UserExtraDetails {
 
     public void setGroupsJoined(List<String> groupsJoined) {
         this.groupsJoined = groupsJoined;
+    }
+
+    public List<Boolean> getTasksCompleted() {
+        return tasksCompleted;
+    }
+
+    public void setTasksCompleted(List<Boolean> tasksCompleted) {
+        this.tasksCompleted = tasksCompleted;
     }
 }

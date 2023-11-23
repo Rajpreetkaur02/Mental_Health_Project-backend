@@ -16,13 +16,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
-
-    private final MongoTemplate mongoTemplate;
-
-    public UserExtraDetailsServiceImpl(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
-    }
-
     @Autowired
     private UserExtraDetailsDao userExtraDetailsDao;
 
@@ -62,8 +55,8 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         List<String> groups;
         if (userDetail.getGroupsJoined() != null) {
             groups = userDetail.getGroupsJoined();
-            for (int i = 0; i < groups.size(); i++) {
-                if (Objects.equals(groups.get(i), groupId)) {
+            for (String group : groups) {
+                if (Objects.equals(group, groupId)) {
                     throw new RuntimeException("Error in business logic");
                 }
             }
@@ -98,14 +91,12 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     @Override
     public int moodAvg(List<Mood> moods) {
         int value = 0, avg = 0;
-        for (int i = 0; i < moods.size(); i++) {
-            System.out.println(moods.get(i).getMood().substring(2));
-            if (moods.get(i).getMood().substring(3).equals("Neutral")) {
-                value += 2;
-            } else if (moods.get(i).getMood().substring(3).equals("Happy")) {
-                value += 3;
-            } else if (moods.get(i).getMood().substring(3).equals("Sad")) {
-                value += 1;
+        for (Mood mood : moods) {
+            System.out.println(mood.getMood().substring(2));
+            switch (mood.getMood().substring(3)) {
+                case "Neutral" -> value += 2;
+                case "Happy" -> value += 3;
+                case "Sad" -> value += 1;
             }
         }
         System.out.println(value);
@@ -123,6 +114,19 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     }
 
     @Override
+    public void addTasks(String userId, List<Boolean> completed) {
+        UserExtraDetails user = getSpecificDetail(userId);
+        user.setTasksCompleted(completed);
+        userExtraDetailsDao.save(user);
+    }
+
+    @Override
+    public List<Boolean> tasksCompleted(String userId) {
+        UserExtraDetails user = getSpecificDetail((userId));
+        return user.getTasksCompleted();
+    }
+
+    @Override
     public Map<String, Integer> returnAvg(String userId) {
         List<Mood> moods = getAllMoods(userId);
         Map<String, List<Mood>> ans = sortedMoods(moods);
@@ -135,7 +139,4 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         System.out.println(avgOfMoods);
         return avgOfMoods;
     }
-
-
-
 }

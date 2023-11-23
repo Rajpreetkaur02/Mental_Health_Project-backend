@@ -27,4 +27,8 @@ public interface UserExtraDetailsService {
     public Map<String, Integer> returnAvg(String userId);
 
     public Map<String, List<Mood>> sortedMoods(List<Mood> moods);
+
+    public void addTasks(String userId, List<Boolean> completed);
+
+    public List<Boolean> tasksCompleted(String userId);
 }
