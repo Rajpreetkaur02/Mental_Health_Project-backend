@@ -1,13 +1,13 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.SupportGroupsDao;
+import com.MentalHealthProject.mentalHealth.entities.Comment;
+import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
 import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SupportGroupsServiceImpl implements SupportGroupsService {
@@ -40,5 +40,89 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
         return supportGroupsDao.save(specificGroup.get());
     }
 
+    @Override
+    public SupportGroups addPosts(String id, CommunityPosts communitypost) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        List<CommunityPosts> post;
+        if (group.get().getCommunityPosts() == null) {
+            post = new ArrayList<>();
+        } else {
+            post = group.get().getCommunityPosts();
+        }
+        post.add(communitypost);
+        group.get().setCommunityPosts(post);
+        return supportGroupsDao.save(group.get());
+    }
+
+    @Override
+    public List<CommunityPosts> getPosts(String id, String date) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        return group.get().getCommunityPosts();
+    }
+
+    @Override
+    public SupportGroups updatePostLikes(String id, String postID, Boolean liked) {
+        System.out.println("liked: " + liked);
+
+        Optional<SupportGroups> group = supportGroupsDao.findById(id);
+        if (group.isPresent()) {
+            List<CommunityPosts> posts = group.get().getCommunityPosts();
+
+            for (CommunityPosts post : posts) {
+                System.out.println("Checking post ID: " + post.getPostID());
+                System.out.println("equals: " + postID);
+                if (postID.equals("\"" + post.getPostID() + "\"")) {
+                    System.out.println("Found matching post ID, updating likes");
+                    Long noOfLikes = post.getLikes();
+                    System.out.println(noOfLikes);
+                    if(liked){
+                        post.setLikes(noOfLikes + 1);
+                    }else {
+                        post.setLikes(noOfLikes - 1);
+                    }
+                    break;
+                }else{
+                    System.out.println("not Found");
+                }
+            }
+            group.get().setCommunityPosts(posts);
+            return supportGroupsDao.save(group.get());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public SupportGroups addComment(String id, Comment comment, String postID) {
+        Optional<SupportGroups> group = supportGroupsDao.findById(id);
+        if (group.isPresent()) {
+            List<CommunityPosts> posts = group.get().getCommunityPosts();
+
+            for (CommunityPosts post : posts) {
+                System.out.println("Checking post ID: " + post.getPostID());
+                System.out.println("equals: " + postID);
+
+                if (postID.equals(post.getPostID())) {
+                    List<Comment> comments;
+                    if(post.getComments() == null){
+                        comments = new ArrayList<>();
+                    }else{
+                        comments = post.getComments();
+                    }
+                    comments.add(comment);
+                    post.setComments(comments);
+                    break;
+                }else{
+                    System.out.println("not Found");
+                }
+            }
+            group.get().setCommunityPosts(posts);
+            return supportGroupsDao.save(group.get());
+        } else {
+            return null;
+        }
+    }
 
 }

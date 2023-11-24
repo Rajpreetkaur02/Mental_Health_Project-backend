@@ -3,6 +3,8 @@ package com.MentalHealthProject.mentalHealth.entities;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document("supportGroups")
 public class SupportGroups {
     private String _id;
@@ -14,11 +16,13 @@ public class SupportGroups {
     private String location;
     private String topics;
 
+    private List<CommunityPosts> CommunityPosts;
+
     public SupportGroups() {
 
     }
 
-    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics) {
+    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics, List<CommunityPosts> CommunityPosts) {
         this._id = _id;
         this.title = title;
         this.members = members;
@@ -27,6 +31,7 @@ public class SupportGroups {
         this.about = about;
         this.location = location;
         this.topics = topics;
+        this.CommunityPosts = CommunityPosts;
     }
 
     public String get_id() {
@@ -91,5 +96,13 @@ public class SupportGroups {
 
     public void setTopics(String topics) {
         this.topics = topics;
+    }
+
+    public List<CommunityPosts> getCommunityPosts() {
+        return CommunityPosts;
+    }
+
+    public void setCommunityPosts(List<CommunityPosts> communityPosts) {
+        CommunityPosts = communityPosts;
     }
 }

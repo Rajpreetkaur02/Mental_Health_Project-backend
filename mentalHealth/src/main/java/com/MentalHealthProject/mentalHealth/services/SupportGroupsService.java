@@ -1,11 +1,11 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 
+import com.MentalHealthProject.mentalHealth.entities.Comment;
+import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
 import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface SupportGroupsService {
     public List<SupportGroups> getSupportGroups();
@@ -15,4 +15,15 @@ public interface SupportGroupsService {
     public SupportGroups getSpecificGroup(String id);
 
     public SupportGroups updateGroup(String id);
+
+    public SupportGroups addPosts(String id, CommunityPosts communitypost);
+
+    public List<CommunityPosts> getPosts(String id, String date);
+
+
+    public SupportGroups updatePostLikes(String id, String postID, Boolean liked);
+
+    public SupportGroups addComment(String id, Comment comment, String postID);
+
+
 }
