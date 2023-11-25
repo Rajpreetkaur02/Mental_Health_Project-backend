@@ -40,4 +40,9 @@ public class MyController {
     public User updateUser(@PathVariable String email, @RequestBody User user) {
         return this.userService.updateUser(email, user);
     }
+
+    @GetMapping("/age/{email}")
+    public String getAge(@PathVariable String email) {
+        return this.userService.getAge(email);
+    }
 }

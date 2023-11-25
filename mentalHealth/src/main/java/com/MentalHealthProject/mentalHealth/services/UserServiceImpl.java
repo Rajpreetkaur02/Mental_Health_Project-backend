@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
         userDao.save(newUser);
         return newUser;
     }
+
+    @Override
+    public String getAge(String email) {
+        User user = getSpecificUser(email);
+        return user.getAge();
+    }
 }

@@ -13,4 +13,6 @@ public interface UserService {
     public User getSpecificUser(String email);
 
     public User updateUser(String email, User user);
+
+    public String getAge(String email);
 }
