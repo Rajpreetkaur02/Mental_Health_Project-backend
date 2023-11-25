@@ -121,8 +121,11 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     }
 
     @Override
-    public List<Boolean> tasksCompleted(String userId) {
+    public List<Boolean> tasksCompleted(String userId) throws Exception {
         UserExtraDetails user = getSpecificDetail((userId));
+        if (user.getTasksCompleted().isEmpty()) {
+            throw new RuntimeException("No tasks found");
+        }
         return user.getTasksCompleted();
     }
 
@@ -130,7 +133,7 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     public Map<String, Integer> returnAvg(String userId) {
         List<Mood> moods = getAllMoods(userId);
         Map<String, List<Mood>> ans = sortedMoods(moods);
-        Map<String, Integer> avgOfMoods = new HashMap<>();
+        Map<String, Integer> avgOfMoods = new TreeMap<>(Comparator.naturalOrder());
 
         ans.forEach((key, value) -> {
             int avg = moodAvg(value);

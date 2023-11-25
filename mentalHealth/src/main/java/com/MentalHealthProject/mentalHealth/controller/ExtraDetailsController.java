@@ -64,7 +64,12 @@ public class ExtraDetailsController {
     }
 
     @GetMapping("/tasksCompleted/{userId}")
-    public List<Boolean> tasksCompleted(@PathVariable String userId) {
-        return this.userExtraDetailsService.tasksCompleted(userId);
+    public ResponseEntity<List<Boolean>> tasksCompleted(@PathVariable String userId) {
+        try {
+            List<Boolean> ans = this.userExtraDetailsService.tasksCompleted(userId);
+            return ResponseEntity.status(HttpStatus.OK).body(ans);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -30,5 +30,5 @@ public interface UserExtraDetailsService {
 
     public void addTasks(String userId, List<Boolean> completed);
 
-    public List<Boolean> tasksCompleted(String userId);
+    public List<Boolean> tasksCompleted(String userId) throws Exception;
 }
