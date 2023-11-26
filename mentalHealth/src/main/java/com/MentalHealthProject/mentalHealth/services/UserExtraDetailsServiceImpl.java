@@ -2,7 +2,10 @@ package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.UserExtraDetailsDao;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
+import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -127,6 +130,32 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
             throw new RuntimeException("No tasks found");
         }
         return user.getTasksCompleted();
+    }
+
+    @Override
+    public UserExtraDetails addSleep(String userId, Sleep sleep) {
+        UserExtraDetails user = getSpecificDetail(userId);
+        List<Sleep> sleepDetail;
+        if (user.getSleep() != null) {
+            sleepDetail = user.getSleep();
+        } else {
+            sleepDetail = new ArrayList<>();
+        }
+        sleepDetail.add(sleep);
+        user.setSleep(sleepDetail);
+        return userExtraDetailsDao.save(user);
+    }
+
+    @Override
+    public Map<String, Integer> getSleep(String userId) {
+        UserExtraDetails user = getSpecificDetail(userId);
+        List<Sleep> sleepList = user.getSleep();
+        Map<String, Integer> sleepMap = new TreeMap<>(Comparator.naturalOrder());
+        if (user.getSleep() != null) {
+            sleepMap = sleepList.stream()
+                    .collect(Collectors.toMap(Sleep::getDateTime, Sleep::getHours));
+        }
+        return sleepMap;
     }
 
     @Override

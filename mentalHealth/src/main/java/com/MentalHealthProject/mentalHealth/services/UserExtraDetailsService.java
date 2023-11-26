@@ -1,6 +1,7 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.entities.Mood;
+import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import org.springframework.http.ResponseEntity;
 
@@ -31,4 +32,8 @@ public interface UserExtraDetailsService {
     public void addTasks(String userId, List<Boolean> completed);
 
     public List<Boolean> tasksCompleted(String userId) throws Exception;
+
+    public UserExtraDetails addSleep(String userId, Sleep sleep);
+
+    public Map<String, Integer> getSleep(String userId);
 }

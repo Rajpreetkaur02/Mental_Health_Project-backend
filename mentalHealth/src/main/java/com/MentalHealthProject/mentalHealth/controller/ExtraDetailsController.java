@@ -1,6 +1,7 @@
 package com.MentalHealthProject.mentalHealth.controller;
 
 import com.MentalHealthProject.mentalHealth.entities.Mood;
+import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import com.MentalHealthProject.mentalHealth.services.UserExtraDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,15 @@ public class ExtraDetailsController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping(value="/addSleep/{userId}")
+    public UserExtraDetails addSleep(@PathVariable String userId, @RequestBody Sleep sleep) {
+        return userExtraDetailsService.addSleep(userId, sleep);
+    }
+
+    @GetMapping("/getSleep/{userId}")
+    public Map<String, Integer> getSleep(@PathVariable String userId) {
+        return userExtraDetailsService.getSleep(userId);
     }
 }

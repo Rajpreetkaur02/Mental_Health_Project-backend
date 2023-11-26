@@ -11,7 +11,7 @@ public class UserExtraDetails {
     private String userId;
     private String result;
     private List<Mood> mood;
-    private Integer sleep;
+    private List<Sleep> sleep;
     private String type;
     private List<Boolean> tasksCompleted;
     private List<String> groupsJoined;
@@ -19,7 +19,7 @@ public class UserExtraDetails {
     public UserExtraDetails() {
     }
 
-    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, Integer sleep, String type, List<Boolean> tasksCompleted, List<String> groupsJoined) {
+    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, List<Sleep> sleep, String type, List<Boolean> tasksCompleted, List<String> groupsJoined) {
         this._id = _id;
         this.userId = userId;
         this.result = result;
@@ -54,11 +54,11 @@ public class UserExtraDetails {
         this.mood = mood;
     }
 
-    public Integer getSleep() {
+    public List<Sleep> getSleep() {
         return sleep;
     }
 
-    public void setSleep(Integer sleep) {
+    public void setSleep(List<Sleep> sleep) {
         this.sleep = sleep;
     }
 
