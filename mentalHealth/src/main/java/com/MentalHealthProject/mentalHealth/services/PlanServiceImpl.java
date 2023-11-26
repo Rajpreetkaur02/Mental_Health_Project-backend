@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PlanServiceImpl implements PlanService {
     @Autowired
     private PlanDao planDao;
 
-    private int week = 0;
+    private int week;
 
     @Override
     public List<Plan> getPlans() {
@@ -22,13 +26,17 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
+    public int getWeekFromDate(LocalDate date) {
+        return date.get(WeekFields.ISO.weekOfYear());
+    }
+
+    @Override
     @Scheduled(cron = "0 0 0 * * MON")
     public void incrementWeek() {
-        if (week < 3) {
-            week = week + 1;
-        } else {
-            week = 0;
-        }
+        LocalDate date = LocalDate.now();
+        int weekNumber = getWeekFromDate(date);
+        week = weekNumber % 4;
+        System.out.println("This week is " + week);
     }
 
     @Override
