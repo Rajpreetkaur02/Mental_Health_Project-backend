@@ -18,11 +18,11 @@ public class BlogPost {
     private String content;
     private String author;
     @CreatedDate
-    private Date timestamp;
+    private String timestamp;
     public BlogPost() {
     }
 
-    public BlogPost(String _id, String title, Binary img, String category, String content, String author, Date timestamp) {
+    public BlogPost(String _id, String title, Binary img, String category, String content, String author, String timestamp) {
         this._id = _id;
         this.title = title;
         this.img = img;
@@ -79,11 +79,11 @@ public class BlogPost {
         this.author = author;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

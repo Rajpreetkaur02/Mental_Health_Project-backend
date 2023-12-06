@@ -24,7 +24,7 @@ public class BlogPostServiceImpl implements BlogPostService {
     @Override
     public BlogPost addPost(MultipartFile file, BlogPost post) throws IOException {
         post.setImg(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-        post.setTimestamp(new Date());
+//        post.setTimestamp(new Date());
         return this.blogPostDao.save(post);
     }
 
