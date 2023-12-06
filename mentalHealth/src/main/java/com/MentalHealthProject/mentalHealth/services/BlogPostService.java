@@ -10,4 +10,6 @@ public interface BlogPostService {
     public BlogPost addPost(MultipartFile file, BlogPost post) throws IOException;
 
     public List<BlogPost> getPosts();
+
+    BlogPost getSpecificPost(String id);
 }

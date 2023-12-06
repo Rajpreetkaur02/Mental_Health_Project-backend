@@ -32,4 +32,10 @@ public class BlogPostServiceImpl implements BlogPostService {
     public List<BlogPost> getPosts() {
         return this.blogPostDao.findAll();
     }
+
+    @Override
+    public BlogPost getSpecificPost(String id) {
+        Optional<BlogPost> blogPost = blogPostDao.findById(id);
+        return blogPost.get();
+    }
 }

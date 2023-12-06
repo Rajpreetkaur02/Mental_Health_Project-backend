@@ -29,4 +29,7 @@ public class BlogPostController {
     public List<BlogPost> getPosts() {
         return this.blogPostService.getPosts();
     }
+
+    @GetMapping("/post/{id}")
+    public BlogPost getSpecificPost(@PathVariable String id){return this.blogPostService.getSpecificPost(id);}
 }
