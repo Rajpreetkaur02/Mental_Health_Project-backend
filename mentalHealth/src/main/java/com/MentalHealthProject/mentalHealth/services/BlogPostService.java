@@ -11,5 +11,6 @@ public interface BlogPostService {
 
     public List<BlogPost> getPosts();
 
+
     BlogPost getSpecificPost(String id);
 }
