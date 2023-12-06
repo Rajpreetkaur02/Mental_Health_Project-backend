@@ -11,6 +11,7 @@ import java.util.Date;
 
 @Document("blogposts")
 public class BlogPost {
+    private String _id;
     private String title;
     private Binary img;
     private String category;
@@ -28,6 +29,14 @@ public class BlogPost {
         this.content = content;
         this.author = author;
         this.timestamp = timestamp;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getTitle() {
