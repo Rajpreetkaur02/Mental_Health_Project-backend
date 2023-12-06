@@ -48,7 +48,7 @@ public class MySecurityConfig {
                 .csrf(csrf -> csrf.disable())
 //                .cors(cors -> cors.disable())
                 .authorizeRequests()
-                .requestMatchers("/api/payment/create-intent","/ws/**","groups/supportGroups", "user/post/**", "/user/getPosts", "/user/post", "/user/eat/**", "/generate-token", "/user/register").permitAll()
+                .requestMatchers("/blog/allPosts","/api/payment/create-intent","/ws/**","groups/supportGroups", "user/post/**", "/user/getPosts", "/user/post", "/user/eat/**", "/generate-token", "/user/register").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()

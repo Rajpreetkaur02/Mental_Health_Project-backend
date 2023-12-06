@@ -7,6 +7,10 @@ import io.jsonwebtoken.Jwts;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +36,6 @@ public class BlogPostServiceImpl implements BlogPostService {
     public List<BlogPost> getPosts() {
         return this.blogPostDao.findAll();
     }
-
 
     @Override
     public BlogPost getSpecificPost(String id) {
