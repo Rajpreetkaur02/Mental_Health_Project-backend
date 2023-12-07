@@ -2,7 +2,6 @@ package com.MentalHealthProject.mentalHealth.entities;
 
 public class JwtResponse {
     String token;
-
     public JwtResponse() {
 
     }

@@ -2,20 +2,13 @@ package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.BlogPostDao;
 import com.MentalHealthProject.mentalHealth.entities.BlogPost;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

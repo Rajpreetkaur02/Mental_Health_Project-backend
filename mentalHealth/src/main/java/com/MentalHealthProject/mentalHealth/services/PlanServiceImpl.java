@@ -2,16 +2,14 @@ package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.PlanDao;
 import com.MentalHealthProject.mentalHealth.entities.Plan;
-import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 @Service
 public class PlanServiceImpl implements PlanService {

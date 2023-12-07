@@ -1,7 +1,6 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.UserDao;
-import com.MentalHealthProject.mentalHealth.entities.EmergencyContact;
 import com.MentalHealthProject.mentalHealth.entities.User;
 import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;

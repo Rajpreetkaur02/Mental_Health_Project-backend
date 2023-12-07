@@ -3,7 +3,6 @@ package com.MentalHealthProject.mentalHealth.services;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;

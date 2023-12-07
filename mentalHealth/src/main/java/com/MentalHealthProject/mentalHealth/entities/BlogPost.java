@@ -1,13 +1,8 @@
 package com.MentalHealthProject.mentalHealth.entities;
 
 import org.bson.types.Binary;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.util.Date;
 
 @Document("blogposts")
 public class BlogPost {
@@ -19,6 +14,7 @@ public class BlogPost {
     private String author;
     @CreatedDate
     private String timestamp;
+
     public BlogPost() {
     }
 
@@ -55,6 +51,7 @@ public class BlogPost {
     public void setImg(Binary img) {
         this.img = img;
     }
+
     public String getCategory() {
         return category;
     }

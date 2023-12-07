@@ -1,8 +1,6 @@
 package com.MentalHealthProject.mentalHealth.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
 import java.util.List;
 
 @Document
@@ -12,7 +10,6 @@ public class CommunityPosts {
     private String content;
     private String timestamp;
     private Long likes;
-
     private List<Comment> comments;
 
     public CommunityPosts(){

@@ -1,6 +1,5 @@
 package com.MentalHealthProject.mentalHealth.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;

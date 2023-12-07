@@ -4,16 +4,9 @@ import com.MentalHealthProject.mentalHealth.dao.UserExtraDetailsDao;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 

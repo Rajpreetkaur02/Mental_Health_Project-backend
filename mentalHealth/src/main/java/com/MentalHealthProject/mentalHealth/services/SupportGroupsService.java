@@ -1,6 +1,5 @@
 package com.MentalHealthProject.mentalHealth.services;
 
-
 import com.MentalHealthProject.mentalHealth.entities.Comment;
 import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
 import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
@@ -20,10 +19,7 @@ public interface SupportGroupsService {
 
     public List<CommunityPosts> getPosts(String id, String date);
 
-
     public SupportGroups updatePostLikes(String id, String postID, Boolean liked);
 
     public SupportGroups addComment(String id, Comment comment, String postID);
-
-
 }

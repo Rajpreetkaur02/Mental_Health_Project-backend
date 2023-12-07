@@ -2,7 +2,6 @@ package com.MentalHealthProject.mentalHealth.entities;
 
 public class JwtRequest {
     String username;
-
     String password;
 
     public JwtRequest() {

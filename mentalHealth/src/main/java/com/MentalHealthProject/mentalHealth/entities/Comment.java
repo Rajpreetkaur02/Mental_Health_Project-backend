@@ -2,8 +2,6 @@ package com.MentalHealthProject.mentalHealth.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document
 public class Comment {
     private String username;

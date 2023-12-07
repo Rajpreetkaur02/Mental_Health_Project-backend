@@ -1,9 +1,6 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.entities.BlogPost;
-import org.bson.types.Binary;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

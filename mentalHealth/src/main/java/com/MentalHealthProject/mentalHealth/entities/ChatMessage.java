@@ -2,7 +2,6 @@ package com.MentalHealthProject.mentalHealth.entities;
 
 import lombok.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor

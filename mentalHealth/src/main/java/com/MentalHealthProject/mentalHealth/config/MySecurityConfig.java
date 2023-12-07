@@ -27,7 +27,6 @@ public class MySecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-
     @Bean
     protected AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
         return builder.getAuthenticationManager();

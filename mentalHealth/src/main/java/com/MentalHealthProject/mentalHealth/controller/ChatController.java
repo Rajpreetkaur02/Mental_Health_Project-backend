@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ChatController {
-
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(
