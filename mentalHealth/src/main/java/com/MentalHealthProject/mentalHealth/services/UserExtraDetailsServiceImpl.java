@@ -30,9 +30,11 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         System.out.println(date);
         UserExtraDetails user = userExtraDetailsDao.findByUserId(userId);
         List<Mood> moods = new ArrayList<>();
-        for (int i = 0; i < user.getMood().size(); i++) {
-            if (Objects.equals(user.getMood().get(i).getOnlyDate(), date)) {
-                moods.add(user.getMood().get(i));
+        if (user.getMood() != null) {
+            for (int i = 0; i < user.getMood().size(); i++) {
+                if (Objects.equals(user.getMood().get(i).getOnlyDate(), date)) {
+                    moods.add(user.getMood().get(i));
+                }
             }
         }
         System.out.println(moods);
@@ -104,8 +106,11 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     @Override
     public Map<String, List<Mood>> sortedMoods(List<Mood> moods) {
         List<Mood> sameMoods = new ArrayList<>();
-        Map<String, List<Mood>> groupedMap = moods.stream()
-                .collect(Collectors.groupingBy(Mood::getOnlyDate));
+        Map<String, List<Mood>> groupedMap = new HashMap<>();
+        if (moods.size() != 0) {
+            groupedMap = moods.stream()
+                    .collect(Collectors.groupingBy(Mood::getOnlyDate));
+        }
         return groupedMap;
     }
 
@@ -153,15 +158,17 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
 
     @Override
     public Map<String, Integer> returnAvg(String userId) {
-        List<Mood> moods = getAllMoods(userId);
-        Map<String, List<Mood>> ans = sortedMoods(moods);
         Map<String, Integer> avgOfMoods = new TreeMap<>(Comparator.naturalOrder());
+        if (getAllMoods(userId) != null) {
+            List<Mood> moods = getAllMoods(userId);
+            Map<String, List<Mood>> ans = sortedMoods(moods);
 
-        ans.forEach((key, value) -> {
-            int avg = moodAvg(value);
-            avgOfMoods.put(key, avg);
-        });
-        System.out.println(avgOfMoods);
+            ans.forEach((key, value) -> {
+                int avg = moodAvg(value);
+                avgOfMoods.put(key, avg);
+            });
+            System.out.println(avgOfMoods);
+        }
         return avgOfMoods;
     }
 }
