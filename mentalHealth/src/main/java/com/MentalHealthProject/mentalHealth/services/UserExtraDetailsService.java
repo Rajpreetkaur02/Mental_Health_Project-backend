@@ -3,7 +3,10 @@ package com.MentalHealthProject.mentalHealth.services;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
+import org.bson.types.Binary;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,4 +38,8 @@ public interface UserExtraDetailsService {
     public UserExtraDetails addSleep(String userId, Sleep sleep);
 
     public Map<String, Integer> getSleep(String userId);
+
+    public UserExtraDetails addReports(String userId, MultipartFile file) throws IOException;
+
+    public List<Binary> getUserReport(String userId);
 }

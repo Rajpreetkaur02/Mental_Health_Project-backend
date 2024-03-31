@@ -4,9 +4,12 @@ import com.MentalHealthProject.mentalHealth.dao.UserExtraDetailsDao;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -78,6 +81,26 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         mood.add(userMood);
         userDetail.setMood(mood);
         return userExtraDetailsDao.save(userDetail);
+    }
+
+    @Override
+    public UserExtraDetails addReports(String userId, MultipartFile file) throws IOException {
+        UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
+        List<Binary> reports;
+        if (userDetail.getReports() != null) {
+            reports = userDetail.getReports();
+        } else {
+            reports = new ArrayList<>();
+        }
+        reports.add(new Binary(file.getBytes()));
+        userDetail.setReports(reports);
+        return userExtraDetailsDao.save(userDetail);
+    }
+
+    @Override
+    public List<Binary> getUserReport(String userId) {
+        UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
+        return userDetail.getReports();
     }
 
     @Override

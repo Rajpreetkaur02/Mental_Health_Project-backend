@@ -4,11 +4,14 @@ import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import com.MentalHealthProject.mentalHealth.services.UserExtraDetailsService;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -82,5 +85,15 @@ public class ExtraDetailsController {
     @GetMapping("/getSleep/{userId}")
     public Map<String, Integer> getSleep(@PathVariable String userId) {
         return userExtraDetailsService.getSleep(userId);
+    }
+
+    @PostMapping("/addReport/{userId}")
+    public UserExtraDetails addReports(@PathVariable String userId, @RequestParam("pdfFile") MultipartFile pdfFile) throws IOException {
+        return userExtraDetailsService.addReports(userId, pdfFile);
+    }
+
+    @GetMapping("/getUserReport/{userId}")
+    public List<Binary> getUserReport(@PathVariable String userId) {
+        return userExtraDetailsService.getUserReport(userId);
     }
 }

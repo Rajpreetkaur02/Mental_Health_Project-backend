@@ -1,5 +1,6 @@
 package com.MentalHealthProject.mentalHealth.entities;
 
+import org.bson.types.Binary;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -14,11 +15,12 @@ public class UserExtraDetails {
     private String type;
     private List<Boolean> tasksCompleted;
     private List<String> groupsJoined;
+    private List<Binary> reports;
 
     public UserExtraDetails() {
     }
 
-    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, List<Sleep> sleep, String type, List<Boolean> tasksCompleted, List<String> groupsJoined) {
+    public UserExtraDetails(String _id, String userId, String result, List<Mood> mood, List<Sleep> sleep, String type, List<Boolean> tasksCompleted, List<String> groupsJoined, List<Binary> reports) {
         this._id = _id;
         this.userId = userId;
         this.result = result;
@@ -27,6 +29,7 @@ public class UserExtraDetails {
         this.type = type;
         this.tasksCompleted = tasksCompleted;
         this.groupsJoined = groupsJoined;
+        this.reports = reports;
     }
 
     public String get_id() {
@@ -91,5 +94,13 @@ public class UserExtraDetails {
 
     public void setTasksCompleted(List<Boolean> tasksCompleted) {
         this.tasksCompleted = tasksCompleted;
+    }
+
+    public List<Binary> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Binary> reports) {
+        this.reports = reports;
     }
 }
