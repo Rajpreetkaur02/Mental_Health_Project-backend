@@ -3,6 +3,7 @@ package com.MentalHealthProject.mentalHealth.services;
 import com.MentalHealthProject.mentalHealth.dao.UserExtraDetailsDao;
 import com.MentalHealthProject.mentalHealth.entities.Mood;
 import com.MentalHealthProject.mentalHealth.entities.Sleep;
+import com.MentalHealthProject.mentalHealth.entities.User;
 import com.MentalHealthProject.mentalHealth.entities.UserExtraDetails;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,12 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     }
 
     @Override
-    public void addGroups(String userId, String groupId) throws Exception {
+    public void manageGroups(String userId, String groupId, String type) throws Exception {
         UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
         List<String> groups;
         if (userDetail.getGroupsJoined() != null) {
             groups = userDetail.getGroupsJoined();
+            if (type.equals("leave")) groups.remove(groupId);
             for (String group : groups) {
                 if (Objects.equals(group, groupId)) {
                     throw new RuntimeException("Error in business logic");
@@ -64,7 +66,7 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         } else {
             groups = new ArrayList<>();
         }
-        groups.add(groupId);
+        if (type.equals("join")) groups.add(groupId);
         userDetail.setGroupsJoined(groups);
         userExtraDetailsDao.save(userDetail);
     }
@@ -81,6 +83,13 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
         mood.add(userMood);
         userDetail.setMood(mood);
         return userExtraDetailsDao.save(userDetail);
+    }
+
+    @Override
+    public UserExtraDetails addResult(String userId, String result) {
+        UserExtraDetails userDetails = userExtraDetailsDao.findByUserId(userId);
+        userDetails.setResult(result);
+        return userExtraDetailsDao.save(userDetails);
     }
 
     @Override
@@ -101,6 +110,13 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     public List<Binary> getUserReport(String userId) {
         UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
         return userDetail.getReports();
+    }
+
+    @Override
+    public int getTotalReports(String userId) {
+        UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
+        List<Binary> reports = userDetail.getReports();
+        return reports == null ? 0 : reports.size();
     }
 
     @Override

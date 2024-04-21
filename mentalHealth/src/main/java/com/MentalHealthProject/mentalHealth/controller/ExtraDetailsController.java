@@ -47,10 +47,15 @@ public class ExtraDetailsController {
         return this.userExtraDetailsService.addMood(userId, userMood);
     }
 
+    @PutMapping(value = "/addResult/{userId}")
+    public UserExtraDetails addResult(@PathVariable String userId, @RequestBody String result) {
+        return this.userExtraDetailsService.addResult(userId, result);
+    }
+
     @PutMapping(value = "/addGroup/{userId}")
-    public ResponseEntity<HttpStatus> addGroups(@PathVariable String userId, @RequestBody String groupId) {
+    public ResponseEntity<HttpStatus> addGroups(@PathVariable String userId, @RequestBody String groupId, @RequestHeader(name="opType") String type) {
         try {
-            this.userExtraDetailsService.addGroups(userId, groupId);
+            this.userExtraDetailsService.manageGroups(userId, groupId, type);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -58,8 +63,13 @@ public class ExtraDetailsController {
     }
 
     @GetMapping("/moodsAvg/{userId}")
-    public Map<String, Integer> moodsAvg(@PathVariable String userId) {
-        return this.userExtraDetailsService.returnAvg(userId);
+    public ResponseEntity<Map<String, Integer>> moodsAvg(@PathVariable String userId) {
+        try {
+            Map<String, Integer> ans =  this.userExtraDetailsService.returnAvg(userId);
+            return ResponseEntity.status(HttpStatus.OK).body(ans);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping(value = "/task/{userId}")
@@ -95,5 +105,10 @@ public class ExtraDetailsController {
     @GetMapping("/getUserReport/{userId}")
     public List<Binary> getUserReport(@PathVariable String userId) {
         return userExtraDetailsService.getUserReport(userId);
+    }
+
+    @GetMapping("/getTotalReports/{userId}")
+    public Integer getTotalReports(@PathVariable String userId) {
+        return userExtraDetailsService.getTotalReports(userId);
     }
 }

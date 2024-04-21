@@ -19,13 +19,14 @@ public class User implements UserDetails {
     private String income;
     private String age;
     private EmergencyContact emergencyContact;
+    private String subscription;
     private boolean enabled = true;
 
     public User() {
 
     }
 
-    public User(String _id, String name, Long number, String email, String password, String gender, String income, String age, EmergencyContact emergencyContact, boolean enabled) {
+    public User(String _id, String name, Long number, String email, String password, String gender, String income, String age, EmergencyContact emergencyContact, String subscription, boolean enabled) {
         this._id = _id;
         this.name = name;
         this.number = number;
@@ -35,6 +36,7 @@ public class User implements UserDetails {
         this.income = income;
         this.age = age;
         this.emergencyContact = emergencyContact;
+        this.subscription = subscription;
         this.enabled = enabled;
     }
 
@@ -122,6 +124,14 @@ public class User implements UserDetails {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(String subscription) {
+        this.subscription = subscription;
     }
 
     public boolean isEnabled() {

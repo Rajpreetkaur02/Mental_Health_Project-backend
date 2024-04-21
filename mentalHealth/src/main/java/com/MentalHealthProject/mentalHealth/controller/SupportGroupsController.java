@@ -34,8 +34,8 @@ public class SupportGroupsController {
     }
 
     @PutMapping(value = "/updateGroupMembers/{id}")
-    public ResponseEntity<SupportGroups> updateGroup(@PathVariable String id) {
-        SupportGroups group = this.supportGroupsService.updateGroup(id);
+    public ResponseEntity<SupportGroups> updateGroup(@PathVariable String id, @RequestHeader(name="opType") String type) {
+        SupportGroups group = this.supportGroupsService.updateGroup(id, type);
         return ResponseEntity.ok(group);
     }
 

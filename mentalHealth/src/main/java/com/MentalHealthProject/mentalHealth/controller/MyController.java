@@ -38,4 +38,14 @@ public class MyController {
     public String getAge(@PathVariable String email) {
         return this.userService.getAge(email);
     }
+
+    @PutMapping(value = "/addSubscription/{email}")
+    public User addSubscription(@PathVariable String email, @RequestBody String subscription) {
+        return this.userService.addSubscription(email, subscription);
+    }
+
+    @GetMapping("/getSubscription/{email}")
+    public String getSubscription(@PathVariable String email) {
+        return this.userService.getSubscription(email);
+    }
 }

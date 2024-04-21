@@ -53,4 +53,19 @@ public class UserServiceImpl implements UserService {
         User user = getSpecificUser(email);
         return user.getAge();
     }
+
+    @Override
+    public User addSubscription(String email, String subscription) {
+        User usr = getSpecificUser(email);
+        usr.setSubscription(subscription);
+        userDao.save(usr);
+        System.out.println(usr);
+        return usr;
+    }
+
+    @Override
+    public String getSubscription(String email) {
+        User user = getSpecificUser(email);
+        return user.getSubscription();
+    }
 }

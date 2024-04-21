@@ -33,10 +33,13 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
     }
 
     @Override
-    public SupportGroups updateGroup(String id) {
+    public SupportGroups updateGroup(String id, String type) {
         Optional<SupportGroups> specificGroup = supportGroupsDao.findById(id);
         Long noOfMembers = specificGroup.get().getMembers();
-        specificGroup.get().setMembers(noOfMembers + 1);
+
+        if (type.equals("add")) specificGroup.get().setMembers(noOfMembers + 1);
+        else if (type.equals("leave")) specificGroup.get().setMembers(noOfMembers - 1);
+
         return supportGroupsDao.save(specificGroup.get());
     }
 

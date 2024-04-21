@@ -13,7 +13,7 @@ public interface SupportGroupsService {
 
     public SupportGroups getSpecificGroup(String id);
 
-    public SupportGroups updateGroup(String id);
+    public SupportGroups updateGroup(String id, String type);
 
     public SupportGroups addPosts(String id, CommunityPosts communitypost);
 

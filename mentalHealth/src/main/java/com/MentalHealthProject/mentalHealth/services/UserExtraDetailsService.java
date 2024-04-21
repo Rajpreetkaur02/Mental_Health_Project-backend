@@ -17,11 +17,13 @@ public interface UserExtraDetailsService {
 
     public UserExtraDetails addMood(String userId, Mood mood);
 
+    public UserExtraDetails addResult(String userId, String result);
+
     public List<Mood> getAllMoods(String userId);
 
     public List<Mood> getMood(String userId, String date);
 
-    public void addGroups(String userId, String groupId) throws Exception;
+    public void manageGroups(String userId, String groupId, String type) throws Exception;
 
     public List<String> getGroupsJoined(String userId);
 
@@ -42,4 +44,6 @@ public interface UserExtraDetailsService {
     public UserExtraDetails addReports(String userId, MultipartFile file) throws IOException;
 
     public List<Binary> getUserReport(String userId);
+
+    public int getTotalReports(String userId);
 }

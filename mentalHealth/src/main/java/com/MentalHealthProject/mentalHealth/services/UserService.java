@@ -14,4 +14,8 @@ public interface UserService {
     public User updateUser(String email, User user);
 
     public String getAge(String email);
+
+    public User addSubscription(String email, String subscription);
+
+    public String getSubscription(String email);
 }
