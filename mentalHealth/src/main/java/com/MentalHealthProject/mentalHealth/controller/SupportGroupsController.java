@@ -2,6 +2,7 @@ package com.MentalHealthProject.mentalHealth.controller;
 
 import com.MentalHealthProject.mentalHealth.entities.Comment;
 import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
+import com.MentalHealthProject.mentalHealth.entities.Review;
 import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
 import com.MentalHealthProject.mentalHealth.services.SupportGroupsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class SupportGroupsController {
     }
 
     @PutMapping(value = "/updateGroupMembers/{id}")
-    public ResponseEntity<SupportGroups> updateGroup(@PathVariable String id, @RequestHeader(name="opType") String type) {
-        SupportGroups group = this.supportGroupsService.updateGroup(id, type);
+    public ResponseEntity<SupportGroups> updateGroup(@PathVariable String id) {
+        SupportGroups group = this.supportGroupsService.updateGroup(id);
         return ResponseEntity.ok(group);
     }
 
@@ -59,5 +60,16 @@ public class SupportGroupsController {
     public SupportGroups addComment(@PathVariable String id, @RequestBody Comment comment, @RequestHeader(name="postID") String postID){
         return this.supportGroupsService.addComment(id,comment,postID);
     }
+
+    @PutMapping(value = "/addReview/{id}")
+    public SupportGroups addReview(@PathVariable String id, @RequestBody Review review){
+        return this.supportGroupsService.addReview(id,review);
+    }
+
+    @GetMapping("/getReviews/{id}")
+    public List<Review> getReview(@PathVariable String id, @RequestHeader(name="MyDate") String date) {
+        return this.supportGroupsService.getReviewsList(id, date);
+    }
+
 
 }

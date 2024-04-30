@@ -52,21 +52,22 @@ public class UserExtraDetailsServiceImpl implements UserExtraDetailsService {
     }
 
     @Override
-    public void manageGroups(String userId, String groupId, String type) throws Exception {
+    public void manageGroups(String userId, String groupId) throws Exception {
         UserExtraDetails userDetail = userExtraDetailsDao.findByUserId(userId);
         List<String> groups;
         if (userDetail.getGroupsJoined() != null) {
             groups = userDetail.getGroupsJoined();
-            if (type.equals("leave")) groups.remove(groupId);
-            for (String group : groups) {
-                if (Objects.equals(group, groupId)) {
-                    throw new RuntimeException("Error in business logic");
-                }
-            }
+//            if (type.equals("leave")) groups.remove(groupId);
+//            for (String group : groups) {
+//                if (Objects.equals(group, groupId)) {
+//                    throw new RuntimeException("Error in business logic");
+//                }
+//            }
         } else {
             groups = new ArrayList<>();
         }
-        if (type.equals("join")) groups.add(groupId);
+//        if (type.equals("join")) groups.add(groupId);
+        groups.add(groupId);
         userDetail.setGroupsJoined(groups);
         userExtraDetailsDao.save(userDetail);
     }

@@ -17,11 +17,13 @@ public class SupportGroups {
 
     private List<CommunityPosts> CommunityPosts;
 
+    private List<Review> Reviews;
+
     public SupportGroups() {
 
     }
 
-    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics, List<CommunityPosts> CommunityPosts) {
+    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics, List<CommunityPosts> CommunityPosts, List<Review> Reviews) {
         this._id = _id;
         this.title = title;
         this.members = members;
@@ -31,6 +33,7 @@ public class SupportGroups {
         this.location = location;
         this.topics = topics;
         this.CommunityPosts = CommunityPosts;
+        this.Reviews = Reviews;
     }
 
     public String get_id() {
@@ -104,4 +107,8 @@ public class SupportGroups {
     public void setCommunityPosts(List<CommunityPosts> communityPosts) {
         CommunityPosts = communityPosts;
     }
+
+    public List<Review> getReviews() { return Reviews; }
+
+    public void setReviews(List<Review> reviews) { Reviews = reviews; }
 }

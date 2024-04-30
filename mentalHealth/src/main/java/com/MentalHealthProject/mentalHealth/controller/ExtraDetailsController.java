@@ -53,9 +53,9 @@ public class ExtraDetailsController {
     }
 
     @PutMapping(value = "/addGroup/{userId}")
-    public ResponseEntity<HttpStatus> addGroups(@PathVariable String userId, @RequestBody String groupId, @RequestHeader(name="opType") String type) {
+    public ResponseEntity<HttpStatus> addGroups(@PathVariable String userId, @RequestBody String groupId) {
         try {
-            this.userExtraDetailsService.manageGroups(userId, groupId, type);
+            this.userExtraDetailsService.manageGroups(userId, groupId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

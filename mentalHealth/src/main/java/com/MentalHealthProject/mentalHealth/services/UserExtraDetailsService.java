@@ -23,7 +23,7 @@ public interface UserExtraDetailsService {
 
     public List<Mood> getMood(String userId, String date);
 
-    public void manageGroups(String userId, String groupId, String type) throws Exception;
+    public void manageGroups(String userId, String groupId) throws Exception;
 
     public List<String> getGroupsJoined(String userId);
 

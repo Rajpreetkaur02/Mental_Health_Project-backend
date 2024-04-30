@@ -3,6 +3,7 @@ package com.MentalHealthProject.mentalHealth.services;
 import com.MentalHealthProject.mentalHealth.dao.SupportGroupsDao;
 import com.MentalHealthProject.mentalHealth.entities.Comment;
 import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
+import com.MentalHealthProject.mentalHealth.entities.Review;
 import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +34,14 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
     }
 
     @Override
-    public SupportGroups updateGroup(String id, String type) {
+    public SupportGroups updateGroup(String id) {
         Optional<SupportGroups> specificGroup = supportGroupsDao.findById(id);
         Long noOfMembers = specificGroup.get().getMembers();
 
-        if (type.equals("add")) specificGroup.get().setMembers(noOfMembers + 1);
-        else if (type.equals("leave")) specificGroup.get().setMembers(noOfMembers - 1);
+        specificGroup.get().setMembers(noOfMembers + 1);
+
+//        if (type.equals("add")) specificGroup.get().setMembers(noOfMembers + 1);
+//        else if (type.equals("leave")) specificGroup.get().setMembers(noOfMembers - 1);
 
         return supportGroupsDao.save(specificGroup.get());
     }
@@ -128,4 +131,25 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
         }
     }
 
+    @Override
+    public SupportGroups addReview(String id, Review review) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        List<Review> reviews;
+        if (group.get().getReviews() == null) {
+            reviews = new ArrayList<>();
+        } else {
+            reviews = group.get().getReviews();
+        }
+        reviews.add(review);
+        group.get().setReviews(reviews);
+        return supportGroupsDao.save(group.get());
+    }
+
+    @Override
+    public List<Review> getReviewsList(String id, String date) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        return group.get().getReviews();
+    }
 }
