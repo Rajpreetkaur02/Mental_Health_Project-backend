@@ -1,9 +1,6 @@
 package com.MentalHealthProject.mentalHealth.controller;
 
-import com.MentalHealthProject.mentalHealth.entities.Comment;
-import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
-import com.MentalHealthProject.mentalHealth.entities.Review;
-import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
+import com.MentalHealthProject.mentalHealth.entities.*;
 import com.MentalHealthProject.mentalHealth.services.SupportGroupsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -71,5 +68,14 @@ public class SupportGroupsController {
         return this.supportGroupsService.getReviewsList(id, date);
     }
 
+    @PutMapping(value = "/addEvent/{id}")
+    public SupportGroups addEvent(@PathVariable String id, @RequestBody Event event){
+        return this.supportGroupsService.addEvent(id,event);
+    }
+
+    @GetMapping("/getEvents/{id}")
+    public List<Event> getEvent(@PathVariable String id, @RequestHeader(name="MyDate") String date) {
+        return this.supportGroupsService.getEventsList(id, date);
+    }
 
 }

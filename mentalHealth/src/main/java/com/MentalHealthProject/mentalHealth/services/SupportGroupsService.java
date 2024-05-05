@@ -1,9 +1,6 @@
 package com.MentalHealthProject.mentalHealth.services;
 
-import com.MentalHealthProject.mentalHealth.entities.Comment;
-import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
-import com.MentalHealthProject.mentalHealth.entities.Review;
-import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
+import com.MentalHealthProject.mentalHealth.entities.*;
 
 import java.util.List;
 
@@ -27,4 +24,7 @@ public interface SupportGroupsService {
     public SupportGroups addReview(String id, Review review);
 
     public List<Review> getReviewsList(String id, String date);
+
+    public SupportGroups addEvent(String id, Event event);
+    public List<Event> getEventsList(String id, String date);
 }

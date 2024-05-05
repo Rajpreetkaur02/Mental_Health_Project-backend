@@ -19,11 +19,13 @@ public class SupportGroups {
 
     private List<Review> Reviews;
 
+    public List<Event> Events;
+
     public SupportGroups() {
 
     }
 
-    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics, List<CommunityPosts> CommunityPosts, List<Review> Reviews) {
+    public SupportGroups(String _id, String title, Long members, String organizer, String type, String about, String location, String topics, List<CommunityPosts> CommunityPosts, List<Review> Reviews, List<Event> Events) {
         this._id = _id;
         this.title = title;
         this.members = members;
@@ -34,6 +36,7 @@ public class SupportGroups {
         this.topics = topics;
         this.CommunityPosts = CommunityPosts;
         this.Reviews = Reviews;
+        this.Events = Events;
     }
 
     public String get_id() {
@@ -111,4 +114,9 @@ public class SupportGroups {
     public List<Review> getReviews() { return Reviews; }
 
     public void setReviews(List<Review> reviews) { Reviews = reviews; }
+
+    public List<Event> getEvents() { return Events; }
+
+    public void setEvents(List<Event> events) { Events = events; }
+
 }

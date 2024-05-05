@@ -1,10 +1,7 @@
 package com.MentalHealthProject.mentalHealth.services;
 
 import com.MentalHealthProject.mentalHealth.dao.SupportGroupsDao;
-import com.MentalHealthProject.mentalHealth.entities.Comment;
-import com.MentalHealthProject.mentalHealth.entities.CommunityPosts;
-import com.MentalHealthProject.mentalHealth.entities.Review;
-import com.MentalHealthProject.mentalHealth.entities.SupportGroups;
+import com.MentalHealthProject.mentalHealth.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -151,5 +148,27 @@ public class SupportGroupsServiceImpl implements SupportGroupsService {
         Optional<SupportGroups> group;
         group = supportGroupsDao.findById(id);
         return group.get().getReviews();
+    }
+
+    @Override
+    public SupportGroups addEvent(String id, Event event) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        List<Event> events;
+        if (group.get().getEvents() == null) {
+            events = new ArrayList<>();
+        } else {
+            events = group.get().getEvents();
+        }
+        events.add(event);
+        group.get().setEvents(events);
+        return supportGroupsDao.save(group.get());
+    }
+
+    @Override
+    public List<Event> getEventsList(String id, String date) {
+        Optional<SupportGroups> group;
+        group = supportGroupsDao.findById(id);
+        return group.get().getEvents();
     }
 }
