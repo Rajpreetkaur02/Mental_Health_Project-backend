@@ -24,6 +24,18 @@ public class TherapistServiceImpl implements TherapistService {
     }
 
     @Override
+    public Therapist getSpecificTherapist(String id) {
+        Optional<Therapist> therapist = therapistDao.findById(id);
+        return therapist.get();
+    }
+
+    @Override
+    public List<Appointments> getAppointments(String id) {
+        Optional<Therapist> therapist = therapistDao.findById(id);
+        return therapist.get().getAppointments();
+    }
+
+    @Override
     public Therapist updateTherapist(String therapistId, String timestamp) {
         System.out.println(timestamp);
         Optional<Therapist> therapist = therapistDao.findById(therapistId);
