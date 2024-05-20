@@ -43,9 +43,10 @@ public class TherapistServiceImpl implements TherapistService {
 
         for (Appointments a : specificTherapist.getAppointments()) {
             System.out.println(a.getTimestamp());
-            if (a.getTimestamp().trim().equals(timestamp.trim())) {
+            if (a.getTimestamp().trim().equals(timestamp.replace("\"", "").trim())) {
                 a.setAvailability(false);
             }
+            System.out.println(specificTherapist.getAppointments().get(1).getAvailability());
         }
         return this.therapistDao.save(specificTherapist);
     }
